@@ -4,6 +4,7 @@ import Search from './components/Search';
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
 import { getTrendingMovies, updateSearchCount } from './appwrite.js';
+import Footer from "./components/Footer"
 
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
@@ -97,8 +98,8 @@ const App = () => {
         <header>
 
           <img src="./hero.png" alt="Hero Banner" />
-           <h1>Descubra indicações de <span className='text-gradient'>filmes </span>
-            moldadas para você!
+           <h1>Descubra os <span className='text-gradient'>melhores filmes </span>
+            atualmente!
            </h1>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
@@ -139,4 +140,5 @@ const App = () => {
    );
 }
 
+  <Footer />
 export default App;
