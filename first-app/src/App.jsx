@@ -91,7 +91,8 @@ const App = () => {
 
   return ( 
     <main>
-      
+       {/* ADICIONE ESTA LINHA PROPOSITALMENTE */}
+      <IssoVaiQuebrarOBuild /> 
       <div className='pattern' />
 
       <div className='wrapper'>
