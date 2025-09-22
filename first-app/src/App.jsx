@@ -134,9 +134,9 @@ const App = () => {
             </ul>
           )}
         </ section>
+      <Footer />
       </div>
 
-      <Footer />
     </main>
    );
 }
