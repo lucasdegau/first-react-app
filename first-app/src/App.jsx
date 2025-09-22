@@ -136,9 +136,10 @@ const App = () => {
         </ section>
       </div>
 
+      <Footer />
     </main>
    );
 }
 
-  <Footer />
+  
 export default App;
