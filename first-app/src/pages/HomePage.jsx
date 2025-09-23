@@ -60,6 +60,8 @@ const HomePage = () => {
 
         const endpoint = `${baseUrl}?${params.toString()}`;
 
+         console.log("URL da chamada:", endpoint); 
+
         const response = await fetch(endpoint, API_OPTIONS); 
       
         if (!response.ok) {
