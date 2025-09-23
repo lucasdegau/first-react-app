@@ -99,7 +99,7 @@ const App = () => {
 
           <img src="./hero.png" alt="Hero Banner" />
            <h1>Descubra os <span className='text-gradient'>melhores filmes </span>
-            atualmente!!
+            atualmente!
            </h1>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
@@ -134,8 +134,8 @@ const App = () => {
             </ul>
           )}
         </ section>
-      <Footer />
       </div>
+      <Footer />
 
     </main>
    );
