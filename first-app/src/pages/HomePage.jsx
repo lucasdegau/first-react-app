@@ -15,8 +15,7 @@ const API_KEY = import.meta.env.VITE_REACT_APP_TMDB_API_KEY;
 const API_OPTIONS = {
   method: 'GET',
   headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${API_KEY}`
+    accept: 'application/json'
   }
 }
 console.log("Chave da API:", API_KEY);
@@ -38,20 +37,43 @@ const HomePage = () => {
     );
 
 
-    const fetchMovies = async (query = '') => {  
+     const fetchMovies = async (query = '') => {  
       setIsLoading(true);
       setErrorMessage('');
 
-
       try {
-        const endpoint = query
-        ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-        : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+        // --- INÍCIO DA PARTE MODIFICADA ---
 
-        const response = await fetch(endpoint, API_OPTIONS);
+        // Define a URL base
+        const baseUrl = query
+          ? `${API_BASE_URL}/search/movie`
+          : `${API_BASE_URL}/discover/movie`;
+
+        // Adiciona os parâmetros obrigatórios, incluindo a chave da API
+        const params = new URLSearchParams({
+          api_key: API_KEY,
+          language: 'pt-BR' // Boa prática adicionar o idioma
+        });
+
+        // Se houver um termo de busca, adiciona ao parâmetro
+        if (query) {
+          params.append('query', query);
+        } else {
+          // Se não, adiciona o parâmetro de ordenação para a página inicial
+          params.append('sort_by', 'popularity.desc');
+        }
+
+        // Monta a URL final
+        const endpoint = `${baseUrl}?${params.toString()}`;
+
+        // --- FIM DA PARTE MODIFICADA ---
+
+        const response = await fetch(endpoint, API_OPTIONS); // Lembre-se que API_OPTIONS não tem mais o 'Authorization'
       
         if (!response.ok) {
-          throw new Error('Erro na requisição');
+          // Converte a resposta de erro para JSON para ver a mensagem da API
+          const errorData = await response.json();
+          throw new Error(errorData.status_message || 'Erro na requisição');
         }
         const data = await response.json();
         if (data.response === 'False') {
