@@ -9,7 +9,9 @@ import Footer from "../components/Footer"
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const API_KEY = import.meta.env.VITE_REACT_APP_TMDB_API_KEY;
+
+console.log("Chave da API:", API_KEY);
 
 const API_OPTIONS = {
   method: 'GET',
@@ -64,7 +66,7 @@ const HomePage = () => {
         }
         
       } catch (error) {
-        console.error('Erro ao obter filmes:, ${error}');
+        console.error(`Erro ao obter filmes:, ${`error`}`);
         setErrorMessage('Falha ao encontrar filmes. Tente novamente mais tarde.');
       } finally {
         setIsLoading(false);
@@ -77,7 +79,7 @@ const HomePage = () => {
       const movies = await getTrendingMovies();
       setTrendingMovies(movies);
     } catch (error) {
-      console.error(`Erro ao carregar filmes em alta: ${error}`);
+      console.error(`Erro ao carregar filmes em alta: ${`error`}`);
       }
     } 
 
