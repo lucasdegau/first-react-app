@@ -42,36 +42,27 @@ const HomePage = () => {
       setErrorMessage('');
 
       try {
-        // --- INÍCIO DA PARTE MODIFICADA ---
 
-        // Define a URL base
         const baseUrl = query
           ? `${API_BASE_URL}/search/movie`
           : `${API_BASE_URL}/discover/movie`;
 
-        // Adiciona os parâmetros obrigatórios, incluindo a chave da API
         const params = new URLSearchParams({
           api_key: API_KEY,
-          language: 'pt-BR' // Boa prática adicionar o idioma
+          language: 'pt-BR' 
         });
 
-        // Se houver um termo de busca, adiciona ao parâmetro
         if (query) {
           params.append('query', query);
         } else {
-          // Se não, adiciona o parâmetro de ordenação para a página inicial
           params.append('sort_by', 'popularity.desc');
         }
 
-        // Monta a URL final
         const endpoint = `${baseUrl}?${params.toString()}`;
 
-        // --- FIM DA PARTE MODIFICADA ---
-
-        const response = await fetch(endpoint, API_OPTIONS); // Lembre-se que API_OPTIONS não tem mais o 'Authorization'
+        const response = await fetch(endpoint, API_OPTIONS); 
       
         if (!response.ok) {
-          // Converte a resposta de erro para JSON para ver a mensagem da API
           const errorData = await response.json();
           throw new Error(errorData.status_message || 'Erro na requisição');
         }
