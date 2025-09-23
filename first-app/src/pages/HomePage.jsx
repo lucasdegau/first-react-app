@@ -11,7 +11,6 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
 
 const API_KEY = import.meta.env.VITE_REACT_APP_TMDB_API_KEY;
 
-console.log("Chave da API:", API_KEY);
 
 const API_OPTIONS = {
   method: 'GET',
@@ -20,6 +19,7 @@ const API_OPTIONS = {
     Authorization: `Bearer ${API_KEY}`
   }
 }
+console.log("Chave da API:", API_KEY);
 
 const HomePage = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -141,6 +141,7 @@ const HomePage = () => {
 
     </main>
    );
+   
 }
 
   
