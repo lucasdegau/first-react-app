@@ -8,8 +8,7 @@ function MovieDetailsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const { movieId } = useParams(); 
 
-const TMDB_API_KEY = import.meta.env.VITE_REACT_APP_TMDB_API_KEY; // Linha antiga comentada
-//const TMDB_API_KEY = "6a6558bff0bb907b08130276caefb000"; // CHAVE ADICIONADA DIRETAMENTE
+const TMDB_API_KEY = import.meta.env.VITE_REACT_APP_TMDB_API_KEY; 
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
