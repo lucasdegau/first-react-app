@@ -1,9 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import favicon from './assets/favicon.png'; 
+// Em: src/main.jsx
 
+// --- IMPORTS ESSENCIAIS ---
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// --- IMPORTS DAS SUAS PÁGINAS E ESTILOS ---
+import HomePage from './pages/HomePage.jsx';
+import MovieDetailsPage from './pages/MovieDetailsPage.jsx';
+import './index.css';
+
+// --- CÓDIGO DO FAVICON (opcional, mas funcional) ---
+import favicon from './assets/favicon.png';
 const setFavicon = () => {
   let link = document.querySelector("link[rel~='icon']");
   if (!link) {
@@ -13,11 +21,24 @@ const setFavicon = () => {
   }
   link.href = favicon;
 };
+setFavicon();
 
-setFavicon(); //
+// --- CONFIGURAÇÃO DO ROTEADOR (SÓ UMA VEZ) ---
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/movie/:movieId",
+    element: <MovieDetailsPage />,
+  },
+]);
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// --- RENDERIZAÇÃO PRINCIPAL (SÓ UMA VEZ) ---
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    {/* O RouterProvider gerencia qual página mostrar com base na URL */}
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
